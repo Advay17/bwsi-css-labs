@@ -30,12 +30,16 @@ def test_division():
 def test_division_by_zero():
     with pytest.raises(ValueError, match="Cannot divide by zero."):
         simple_calculator("divide", 5, 0)               # Test division by zero
+    with pytest.raises(ValueError, match="Cannot divide by zero."):
+        simple_calculator("divide", 0, 0)               # Test division by zero
 
 def test_invalid_operation():
     with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
         simple_calculator("modulus", 5, 3)              # Test for invalid operation
     with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
         simple_calculator("", 5, 3)                     # Test for empty operation
+    with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
+        simple_calculator("", "a", 3)                     # Test for empty operation
 
 if __name__ == "__main__":
     pytest.main()
