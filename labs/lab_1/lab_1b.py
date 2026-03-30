@@ -9,6 +9,22 @@ and prints the result to the terminal window.
 
 """
 
+def sanitized_number(prompt: str) -> float:
+    try:
+        num = float(input(prompt))
+        return num
+    except Exception:
+        print("Error: Number not recognized.")
+        return sanitized_number(prompt)
+
+def sanitized_operation() -> str:
+    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+    if(operation not in ["add", "subtract", "multiply", "divide"]):
+        print("Error: Operation invalid.")
+        return sanitized_operation()
+    return operation
+
+
 def simple_calculator(operation: str, num1: float, num2: float) -> float:
     """
     Function that takes in two numbers and an operation (add, subtract, multiply, divide),
@@ -42,9 +58,9 @@ def main():
     print(f"===== Simple Calculator =====")
 
     # Ask the user for sample input    
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
-    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+    num1 = sanitized_number("Enter the first number: ")
+    num2 = sanitized_number("Enter the second number: ")
+    operation = sanitized_operation()
 
     # Perform the calculation and display the result
     result = simple_calculator(operation, num1, num2)
