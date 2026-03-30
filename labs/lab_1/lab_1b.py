@@ -13,7 +13,7 @@ def sanitized_number(prompt: str) -> float:
     try:
         num = float(input(prompt))
         return num
-    except ValueError:
+    except Exception:
         print("Error: Number not recognized.")
         return sanitized_number(prompt)
 
